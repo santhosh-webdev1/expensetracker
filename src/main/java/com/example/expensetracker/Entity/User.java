@@ -27,16 +27,24 @@ public class User {
 	@Column(name="password", nullable = false)
 	private String password;
 	
-	@Column(name="firstname", nullable = false)
+	@Column(name="firstName", nullable = false)
 	private String firstName;
 	
-	@Column(name="lastname", nullable = false)
+	@Column(name="lastName", nullable = false)
 	private String lastName;
 	
-	@OneToMany(mappedBy="users", cascade= CascadeType.ALL, orphanRemoval=true)
-	private List<Expense> expense;
+	@OneToMany(mappedBy="user", cascade= CascadeType.ALL, orphanRemoval=true)
+	private List<Expense> expenses;
 	
-	@OneToMany(mappedBy="users", cascade= CascadeType.ALL, orphanRemoval=true)
+	public List<Expense> getExpenses() {
+		return expenses;
+	}
+
+	public void setExpenses(List<Expense> expenses) {
+		this.expenses = expenses;
+	}
+
+	@OneToMany(mappedBy="user", cascade= CascadeType.ALL, orphanRemoval=true)
 	private List<Budget> budget;
 	
 	public int getUserId() {
@@ -77,14 +85,6 @@ public class User {
 
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
-	}
-
-	public List<Expense> getExpense() {
-		return expense;
-	}
-
-	public void setExpense(List<Expense> expense) {
-		this.expense = expense;
 	}
 
 	public List<Budget> getBudget() {
