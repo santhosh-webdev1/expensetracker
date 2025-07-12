@@ -1,9 +1,15 @@
 package com.example.expensetracker.Entity;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EntityListeners;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -14,6 +20,7 @@ import jakarta.persistence.Table;
 
 
 @Entity
+@EntityListeners(AuditingEntityListener.class)
 @Table(name="Expense")
 public class Expense {
 
@@ -35,22 +42,25 @@ public class Expense {
 	@Column(name="description")
 	private String description;
 	
-	@Column(name="date")
+	@CreationTimestamp
+	@Column(updatable = false)
+	private LocalDateTime createdAt;
+	
+	@UpdateTimestamp
+	private LocalDateTime updatedAt;
+	
+	@Column(nullable = false)
 	private LocalDate date;
 	
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+	public LocalDate getDate() {
+		return date;
+	}
+
+	public void setDate(LocalDate date) {
+		this.date = date;
+	}
+
 	public int getId() {
 		return id;
 	}
@@ -91,12 +101,22 @@ public class Expense {
 		this.description = description;
 	}
 
-	public LocalDate getDate() {
-		return date;
+	public LocalDateTime getCreatedAt() {
+		return createdAt;
 	}
 
-	public void setDate(LocalDate date) {
-		this.date = date;
+	public void setCreatedAt(LocalDateTime createdAt) {
+		this.createdAt = createdAt;
 	}
+
+	public LocalDateTime getUpdatedAt() {
+		return updatedAt;
+	}
+
+	public void setUpdatedAt(LocalDateTime updatedAt) {
+		this.updatedAt = updatedAt;
+	}
+
+
 	
 }

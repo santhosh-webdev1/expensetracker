@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.expensetracker.DTO.UserDto;
-import com.example.expensetracker.Entity.Expense;
 import com.example.expensetracker.Entity.User;
 import com.example.expensetracker.repository.UserRepository;
 

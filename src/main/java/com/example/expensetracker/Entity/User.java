@@ -18,9 +18,9 @@ public class User {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="userId")
-	private int userId;
+	private int id;
 	
+
 	@Column(name="username", nullable = false, unique = true)
 	private String userName;
 	
@@ -47,13 +47,6 @@ public class User {
 	@OneToMany(mappedBy="user", cascade= CascadeType.ALL, orphanRemoval=true)
 	private List<Budget> budget;
 	
-	public int getUserId() {
-		return userId;
-	}
-
-	public void setUserId(int userId) {
-		this.userId = userId;
-	}
 
 	public String getUserName() {
 		return userName;
@@ -94,5 +87,18 @@ public class User {
 	public void setBudget(List<Budget> budget) {
 		this.budget = budget;
 	}
+	
+	
+	
+	//unique id
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+	
+	
 	
 }

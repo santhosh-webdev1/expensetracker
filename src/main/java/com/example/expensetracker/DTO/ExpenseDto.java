@@ -6,6 +6,12 @@ public class ExpenseDto {
 	
 	private String category;
 	
+	private String description;
+	
+	private double amount;
+	
+	private LocalDate date;
+	
 	public String getCategory() {
 		return category;
 	}
@@ -38,10 +44,6 @@ public class ExpenseDto {
 		this.date = date;
 	}
 
-	private String description;
 	
-	private double amount;
-	
-	private LocalDate date;
 	
 }
