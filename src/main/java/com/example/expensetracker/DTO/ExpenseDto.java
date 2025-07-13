@@ -2,7 +2,9 @@ package com.example.expensetracker.DTO;
 
 import java.time.LocalDate;
 
-public class ExpenseDto {	
+public class ExpenseDto {
+	
+	private int userId;
 	
 	private String category;
 	
@@ -43,6 +45,14 @@ public class ExpenseDto {
 	public void setDate(LocalDate date) {
 		this.date = date;
 	}
+
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
 
 	
 	

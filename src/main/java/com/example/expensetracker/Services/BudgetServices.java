@@ -135,6 +135,26 @@ public class BudgetServices {
 		
 		return remainingAmount;
 	}
+
+	public boolean deleteBudget(int userId, BudgetDto budgetDto){
+
+		Optional<Budget> optionalBudget = budgetRepository.findById(budgetDto.getBudgetId());
+
+		if(optionalBudget.isEmpty()){
+			return false;
+		}
+
+		Budget budget = optionalBudget.get();
+
+		if(budget.getUser().getId() != userId){
+			return false;
+		}
+
+		budgetRepository.delete(budget);
+
+		return true;
+
+	}
 	
 	
 	

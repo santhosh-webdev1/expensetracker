@@ -15,10 +15,14 @@ public class UserServices {
 	@Autowired
 	UserRepository userRepository;
 	
-	public String userRegistration(UserDto userDto) {
+	public User userRegistration(UserDto userDto) {
+
+		if(userRepository.existsByUserName(userDto.getUserName())){
+			return null;
+		}
 		
 		if(!userDto.getPassword().equals(userDto.getConfirmPassword())) {
-			return "Password and ConfirmPassword does not Match";
+			return null;
 		}
 		
 			User user = new User();
@@ -29,25 +33,25 @@ public class UserServices {
 			user.setUserName(userDto.getUserName());
 			user.setPassword(userDto.getPassword());
 			
-			userRepository.save(user);
-			
-			return "User Registered Successfully";
+			return userRepository.save(user);
 	}
 	
-	public String login(String username, String password) {
-		Optional<User> optionalUser = userRepository.findByUserName(username);
+	public Boolean login(String userName, String password) {
+		Optional<User> optionalUser = userRepository.findByUserName(userName);
 		
 		if(optionalUser.isEmpty()) {
-			return "username not found!, please register";
+			return false;
 		}
 		
 		User user = optionalUser.get();
 		
-		if(!user.getPassword().equals(password)) {
-			return "Password incorrect! try again";
-		}
 		
-		return "Login succesfull";
+		return user.getPassword().equals(password);
+		
+	}
+
+	public User getUserByUserName(String userName){
+		return userRepository.findByUserName(userName).orElse(null);
 	}
 	
 }

@@ -126,7 +126,7 @@ public class ExpenseServices {
 		ResponseStructure<Expense> response = new ResponseStructure<>();
 		response.setData(expense);
 		response.setMessage("Expense found");
-		response.setStatusCode(HttpStatus.OK.value());;
+		response.setStatusCode(HttpStatus.OK.value());
 		
 		return response;
 		
